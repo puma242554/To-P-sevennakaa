@@ -2,7 +2,7 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>For You 💗</title>
 
 <style>
@@ -15,8 +15,8 @@ body{margin:0;font-family:sans-serif;background:#000;color:#fff;overflow:hidden}
 button{padding:14px 26px;border-radius:22px;border:none;background:#ffb6d9;color:#000;font-size:18px;margin-top:20px;cursor:pointer}
 
 /* HACK */
-#matrix{position:absolute;inset:0;color:#00ff88;font-size:11px;white-space:pre-wrap;opacity:.9;padding:10px}
-#hackDone{font-size:20px;display:none}
+#matrix{position:absolute;inset:0;color:#00ff88;font-size:10px;white-space:pre-wrap;opacity:.9;padding:10px}
+#hackDone{font-size:16px;display:none}
 
 /* CHAT */
 .chatBox{width:92%;max-width:420px;height:70vh;background:#111;border-radius:20px;padding:16px;overflow-y:auto;display:flex;flex-direction:column;gap:10px}
@@ -31,15 +31,24 @@ button{padding:14px 26px;border-radius:22px;border:none;background:#ffb6d9;color
 /* GALLERY */
 .gallery{display:flex;gap:10px;justify-content:center}
 .gallery img{width:90px;border-radius:12px}
+
+/* LETTER */
+.letterBox{width:80%;max-width:320px;height:220px;background:#fff;color:#000;border-radius:12px;overflow:hidden;display:none;position:relative}
+.letterInner{position:absolute;bottom:-200px;width:100%;padding:20px;transition:1s}
 </style>
 </head>
 
 <body>
 
+<!-- เพลงเปียโนคลอ -->
+<audio id="bgMusic" loop>
+<source src="https://cdn.pixabay.com/audio/2022/03/15/audio_5b6cc9b4b9.mp3" type="audio/mpeg">
+</audio>
+
 <!-- PAGE 0 HACK -->
 <div class="page active" id="page0" onclick="nextPage(1)">
 <div id="matrix"></div>
-<h1 id="hackDone">ระบบนี้ถูกแฮ็กด้วยเธอแล้วว💗</h1>
+<h1 id="hackDone">ระบบนี้ถูกแฮ็กด้วยเธอแล้ว 💗</h1>
 </div>
 
 <!-- PAGE 1 PASSWORD -->
@@ -48,62 +57,50 @@ button{padding:14px 26px;border-radius:22px;border:none;background:#ffb6d9;color
 <div id="display" style="font-size:32px;letter-spacing:6px;margin:20px">________</div>
 
 <div style="display:grid;grid-template-columns:repeat(3,80px);gap:10px;justify-content:center">
-<button onclick="press(1)">1</button>
-<button onclick="press(2)">2</button>
-<button onclick="press(3)">3</button>
-<button onclick="press(4)">4</button>
-<button onclick="press(5)">5</button>
-<button onclick="press(6)">6</button>
-<button onclick="press(7)">7</button>
-<button onclick="press(8)">8</button>
-<button onclick="press(9)">9</button>
-<button onclick="clearPass()">ลบ</button>
-<button onclick="press(0)">0</button>
-<button onclick="submitPass()">ตกลง</button>
+<button onclick="press(1)">1</button><button onclick="press(2)">2</button><button onclick="press(3)">3</button>
+<button onclick="press(4)">4</button><button onclick="press(5)">5</button><button onclick="press(6)">6</button>
+<button onclick="press(7)">7</button><button onclick="press(8)">8</button><button onclick="press(9)">9</button>
+<button onclick="clearPass()">ลบ</button><button onclick="press(0)">0</button><button onclick="submitPass()">ตกลง</button>
 </div>
 </div>
 
 <!-- PAGE 2 CHAT -->
 <div class="page" id="page2">
 <div class="chatBox" id="chat"></div>
-<button id="chatNext" style="display:none" onclick="nextPage(3)">ต่อปายๆๆ</button>
+<button id="chatNext" style="display:none" onclick="nextPage(3)">ต่อไปๆ</button>
 </div>
 
 <!-- PAGE 3 TIMER -->
 <div class="page" id="page3">
 <h2>คุยกันมานานเท่าไหร่แล้วน้าาาา</h2>
 <h1 id="timer"></h1>
-<button onclick="nextPage(4)">อ่ะต่อๆ</button>
+<button onclick="nextPage(4)">ต่อๆๆ</button>
 </div>
 
-<!-- PAGE 4 QUIZ -->
+<!-- PAGE 4 GALLERY -->
 <div class="page" id="page4">
-<h2>ใครขี้งอนมากกว่ากัน</h2>
-<button onclick="quizWrong()">หนู</button>
-<button onclick="quizCorrect()">พี่</button>
-<p id="quizResult"></p>
-</div>
-
-<!-- PAGE 5 GALLERY -->
-<div class="page" id="page5">
-<h2>หนูทำให้พี่น้าา ถ้าเจอเดี๋ยวเอาไปให้</h2>
+<h2>อันนี้หนูทำให้พี่น้าา ถ้าเจอเดี๋ยวเอาไปให้💗</h2>
 <div class="gallery">
-<img src="https://picsum.photos/200?1">
-<img src="https://picsum.photos/200?2">
-<img src="https://picsum.photos/200?3">
+<img src="https://1drv.ms/i/c/a7b43dd437caa1c3/IQDN8JMCKSDWSpGWpBaNiWRxASHDKEJwJZg23_HhppkEQIA?e=sVyjpO">
+<img src="https://1drv.ms/i/c/a7b43dd437caa1c3/IQBJJ9HQXByZQKQYn0m7wg3LAX02ZfCwJMVu_x503iJPlik?e=LB1VCz">
+<img src="https://1drv.ms/i/c/a7b43dd437caa1c3/IQCdBEJ54XsVSa42mkVVeWVzAdBf4DaDhWcUT-LUAN8WXMA?e=WYnty8">
 </div>
-<button onclick="nextPage(6)">ต่อปายๆ</button>
+<button onclick="nextPage(5)">ปายๆ</button>
 </div>
 
-<!-- PAGE 6 DON'T PRESS -->
-<div class="page" id="page6">
+<!-- PAGE 5 DON'T PRESS -->
+<div class="page" id="page5">
 <h2>ห้ามกดน้าา😳</h2>
 <button onclick="dontPress()">ห้ามๆๆ</button>
-<p id="dontText"></p>
+
+<div id="dontBox" style="display:none;background:#fff;color:#000;padding:20px;border-radius:12px;margin-top:20px">
+<p>กดเข้ามาทะมะ อยากเป็นแฟนหนูไง๊ 💗</p>
+<button onclick="nextPage(6)">55ต่อไป</button>
+</div>
 </div>
 
-<!-- PAGE 7 GIFTS -->
-<div class="page" id="page7">
+<!-- PAGE 6 GIFTS -->
+<div class="page" id="page6">
 <h2>ของขวัญให้สำหรับเธอโดยเฉพาะเลย 🎁</h2>
 <div class="gifts">
 <div class="gift" onclick="openGift(1)">🎁</div>
@@ -112,42 +109,48 @@ button{padding:14px 26px;border-radius:22px;border:none;background:#ffb6d9;color
 <div class="gift" onclick="openGift(4)">🎁</div>
 <div class="gift" onclick="openGift(5)">🎁</div>
 </div>
-<button onclick="nextPage(8)">ต่อไป</button>
+<button id="giftNext" style="display:none" onclick="nextPage(7)">ต่อไป</button>
 </div>
 
-<!-- PAGE 8 LETTER -->
+<!-- PAGE 7 LETTER -->
+<div class="page" id="page7">
+<h1 onclick="showLetter()" style="font-size:80px;cursor:pointer">💌</h1>
+
+<div class="letterBox" id="letterBox">
+<div class="letterInner" id="letterInner">
+ถ้าเล่นมาถึงตรงนี้เเล้วหนูอยากบอกพี่ว่าหลังจากวันจันทร์อาจจะได้คุยกันน้อยลงนะ 555ดีใจอยู่เเน่เลยย หนูมีภารกิจต้องไปทำถ้าอยากรู้เล่นเสร็จก็ทักมาพิมในนี้ไม่พอ เเละ ยังยืนยันคำเดิมถึงจะเลี่ยนไปหน่อยก็เถอะว่า หนูจะตั้งใจดูเเลหัวใจของพี่ให้ดี เท่าที่หนูรักครอบครัวของหนูเลย อยู่คุยทะลึ่งๆไปด้วยกัน นานๆน้าา จุ๊บๆ 💗
+</div>
+</div>
+
+<button id="toMusic" style="display:none" onclick="nextPage(8)">ต่อไป</button>
+</div>
+
+<!-- PAGE 8 MUSIC -->
 <div class="page" id="page8">
-<h1 onclick="showLetter()">💌</h1>
-<p id="letter" style="display:none;max-width:300px">
-อยู่คุยทะลึ่งๆไปด้วยกัน นานๆน้าา จุ๊บๆ 💗
-</p>
-<button style="display:none" id="toMusic" onclick="nextPage(9)">ต่อไป</button>
-</div>
-
-<!-- PAGE 9 MUSIC -->
-<div class="page" id="page9">
 <h2>เพลงนี้หนูให้พี่น้าา 🎵</h2>
-<input id="musicLink" placeholder="https://youtu.be/1bjVXQ4OCQc?si=GHaWzfzGgvVgoMhl" />
+<input id="musicLink" placeholder="https://youtu.be/1bjVXQ4OCQc?si=GHaWzfzGgvVgoMhl"/>
 <button onclick="playMusic()">เล่นเพลง</button>
 <div id="player" style="margin-top:20px"></div>
 </div>
 
 <script>
+const bgMusic=document.getElementById("bgMusic")
+
 function nextPage(n){
 document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'))
 document.getElementById('page'+n).classList.add('active')
+
+if(n>=1){bgMusic.play().catch(()=>{})}
 }
 
 /* HACK EFFECT */
-const hackText="ACCESS...\nBYPASS...\nLOVE.EXE...\nDONE..."
+const hackText = Array(200).fill("010101 ACCESS LOVE SYSTEM...").join("\n")
 let i=0
 function typeHack(){
 if(i<hackText.length){
-matrix.textContent+=hackText[i++]
-setTimeout(typeHack,10)
-}else{
-hackDone.style.display="block"
-}
+matrix.textContent += hackText[i++]
+setTimeout(typeHack,2)
+}else hackDone.style.display="block"
 }
 typeHack()
 
@@ -164,18 +167,14 @@ if(password==="24062554") nextPage(2)
 else{alert("รหัสผิด งอน 😤");clearPass()}
 }
 
-/* CHAT */
+/* CHAT SOUND */
+const audio = new Audio("https://www.soundjay.com/buttons/sounds/button-16.mp3")
 const messages=[
-["left","อยากจีบหรอ55"],
-["right","เห้อ กะจะไม่บอกโป้ะจนได้"],
-["left","ทำไมอะ หน้าเราหวานอ่อ"],
-["right","อืมชอบคนเเบบนั้น พอลองคุยก็สนุกปากดี🤣🤣"],
-["left","ไม่ได้ดีเเค่ปาก"],
-["right","เเล้วอะไรดีอีกล่ะ"],
-["left","จีบไม่ติดอย่าโกรธนะ"],
-["right","อันนี้คืออนุญาติเเล้วออ"],
-["left","ใช่ นอนละนะ ฝันดีนะ"],
-["right","ฝันดี เหล่ากง"]
+["left","อยากจีบหรอ55"],["right","เห้อ กะจะไม่บอกโป้ะจนได้"],
+["left","ทำไมอะ หน้าเราหวานอ่อ"],["right","อืมชอบคนเเบบนั้น พอลองคุยก็สนุกปากดี🤣🤣"],
+["left","ไม่ได้ดีเเค่ปาก"],["right","เเล้วอะไรดีอีกล่ะ"],
+["left","จีบไม่ติดอย่าโกรธนะ"],["right","อันนี้คืออนุญาติเเล้วออ"],
+["left","ใช่ นอนละนะ ฝันดีนะ"],["right","ฝันดี เหล่ากง"]
 ]
 
 let ci=0
@@ -186,6 +185,7 @@ d.className="msg "+messages[ci][0]
 d.textContent=messages[ci][1]
 chat.appendChild(d)
 chat.scrollTop=chat.scrollHeight
+audio.currentTime=0; audio.play()
 ci++
 setTimeout(playChat,1200)
 }
@@ -202,44 +202,47 @@ const s=Math.floor(diff/1000)%60
 timer.textContent=`${d} วัน ${h} ชม ${m} นาที ${s} วิ`
 },1000)
 
-/* QUIZ */
-function quizWrong(){quizResult.textContent="ทำไมตอบงี้อ่ะ งอน"}
-function quizCorrect(){quizResult.textContent="เก่งที่สุดเลย 💗";setTimeout(()=>nextPage(5),1000)}
-
 /* DONT PRESS */
-let pressCount=0
-function dontPress(){
-pressCount++
-if(pressCount<3) dontText.textContent="กดเข้ามาทะมะ อยากเป็นเเฟนหนูไง๊"
-else nextPage(7)
-}
+function dontPress(){dontBox.style.display="block"}
 
-/* GIFTS — เปิดได้ทุกกล่อง */
+/* GIFTS */
+let openedCount=0
+const openedMap={1:false,2:false,3:false,4:false,5:false}
+
 function openGift(n){
-
-const texts = {
-1: "เธอเล่นเกมเคยปวดนิ้วบ้างไหมอ่ะ ไม่อยากมาเล่นสิ่งนุ่มๆบนตัวเราบ้างหรออ 💗",
-2: "หนาวมั้ยคะ ด้านในตัวหนูอุ่นน้าา 🤍",
-3: "หิวน้ำอ่ะ…แต่เป็นน้ำขุ่นๆนะ 😳",
-4: "จะตรุษจีนแล้ว ตี๋เดียวที่อยากได้ อาจไม่ใช่พี่…แต่อาจจะเป็นตี๋ที่แหก 🤭",
-5: "มาต่อยมวยกันไหมคะ…มวยลำคิด 🥊💞"
-};
-
-alert(texts[n]);
+const texts={
+1:"เธอเล่นเกมเคยปวดนิ้วบ้างไหมอ่ะ ไม่อยากมาเล่นสิ่งนุ่มๆบนตัวเราบ้างหรออ 💗",
+2:"หนาวมั้ยคะ ด้านในตัวหนูอุ่นน้าา 🤍",
+3:"หิวน้ำอ่ะ…แต่เป็นน้ำขุ่นๆนะ 😳",
+4:"จะตรุษจีนแล้ว ตี๋เดียวที่อยากได้ อาจไม่ใช่พี่…แต่อาจจะเป็นตี๋ที่แหก 🤭",
+5:"มาต่อยมวยกันไหมคะ…มวยลำคิด 🥊💞"
 }
+alert(texts[n])
 
+if(!openedMap[n]){
+openedMap[n]=true
+openedCount++
+}
+if(openedCount===5){
+giftNext.style.display="block"
+}
+}
 
 /* LETTER */
 function showLetter(){
-letter.style.display="block"
+letterBox.style.display="block"
+setTimeout(()=>{
+letterInner.style.bottom="0"
 toMusic.style.display="inline-block"
+},200)
 }
 
-/* MUSIC */
+/* MUSIC LINK */
 function playMusic(){
-const link=musicLink.value
+const link=musicLink.value.trim()
 if(!link)return
-player.innerHTML=`<iframe width="300" height="170" src="${link.replace("watch?v=","embed/")}" frameborder="0" allowfullscreen></iframe>`
+const embed=link.replace("watch?v=","embed/")
+player.innerHTML=`<iframe width="300" height="170" src="${embed}" frameborder="0" allow="autoplay" allowfullscreen></iframe>`
 }
 </script>
 
